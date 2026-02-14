@@ -1,6 +1,6 @@
 import './Hero.css'
 
-function Hero() {
+function Hero({ onStartTriage, onSampleReport }) {
   return (
     <section className="hero" id="features">
       <div className="hero__float" aria-hidden="true">
@@ -15,8 +15,12 @@ function Hero() {
           clinicians receive early risk signals and transparent explanations.
         </p>
         <div className="hero__actions">
-          <button className="hero__primary">Start a Quick Triage</button>
-          <button className="hero__secondary">See Sample Report</button>
+          <button className="hero__primary" type="button" onClick={onStartTriage}>
+            Start Triage
+          </button>
+          <button className="hero__secondary" type="button" onClick={onSampleReport}>
+            See Sample Report
+          </button>
         </div>
       </div>
       <div className="hero__card" id="workflow">

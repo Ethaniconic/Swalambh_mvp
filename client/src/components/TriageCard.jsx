@@ -1,4 +1,4 @@
-import { use, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import './TriageCard.css'
 
 function TriageCard() {
@@ -105,8 +105,19 @@ function TriageCard() {
               {isDragging ? 'Release to upload' : 'Drop image here'}
             </p>
             <p className="triage__drop-text">JPG or PNG, max 10MB</p>
+            {file && (
+              <p className="triage__file-name">{file.name}</p>
+            )}
           </div>
-          <button className="triage__ghost" type="button">
+
+          <input
+            ref={inputRef}
+            type="file"
+            accept={ACCEPTED_TYPES.join(',')}
+            onChange={(e) => handleFilePicked(e.target.files?.[0])}
+            style={{ display: 'none' }}
+          />
+          <button className="triage__ghost" type="button" onClick={handleBrowse}>
             Browse files
           </button>
         </div>
@@ -120,10 +131,18 @@ function TriageCard() {
             className="triage__textarea"
             placeholder="Itchy patch for 2 weeks, mild redness, no bleeding..."
             rows="5"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
           />
+          {error && <p className="triage__error">{error}</p>}
           <div className="triage__actions">
-            <button className="triage__primary" type="button">
-              Start Triage
+            <button
+              className="triage__primary"
+              type="button"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Uploading...' : 'Start Triage'}
             </button>
             <button className="triage__secondary" type="button">
               Save Draft
