@@ -1,7 +1,13 @@
 import logo from '../assets/favicon.jpg'
 import './Navbar.css'
 
-function Navbar({ currentPage, onNavigate }) {
+function Navbar({ currentPage, onNavigate, onAuthOpen }) {
+  const handleAuth = (mode) => {
+    if (onAuthOpen) {
+      onAuthOpen(mode)
+    }
+  }
+
   return (
     <header className="nav">
       <div className="nav__brand">
@@ -53,8 +59,12 @@ function Navbar({ currentPage, onNavigate }) {
       </nav>
 
       <div className="nav__actions">
-        <button className="nav__ghost">Sign in</button>
-        <button className="nav__cta">Start Triage</button>
+        <button className="nav__ghost" type="button" onClick={() => handleAuth('login')}>
+          Sign in
+        </button>
+        <button className="nav__cta" type="button" onClick={() => handleAuth('signup')}>
+          Start Triage
+        </button>
       </div>
     </header>
   )
