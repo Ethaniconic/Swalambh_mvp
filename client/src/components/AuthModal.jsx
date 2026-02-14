@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './AuthModal.css'
 
-function AuthModal({ mode = 'login', onClose, onSwitch }) {
+function AuthModal({ mode = 'login', onClose, onSwitch, onAuthSuccess }) {
   const [fullName, setFullName] = useState('')
   const [role, setRole] = useState('')
   const [email, setEmail] = useState('')
@@ -91,6 +91,9 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
         }
 
         setStatus({ type: 'success', message: 'Signed in successfully.' })
+        if (onAuthSuccess) {
+          onAuthSuccess()
+        }
         return
       }
 

@@ -13,6 +13,7 @@ function App() {
   const [page, setPage] = useState('home')
   const [direction, setDirection] = useState('forward')
   const [authMode, setAuthMode] = useState(null)
+  const [isAuthed, setIsAuthed] = useState(false)
   const pageOrder = ['home', 'features', 'workflow', 'safety', 'telehealth']
 
   const handleNavigate = (nextPage) => {
@@ -34,6 +35,7 @@ function App() {
         currentPage={page}
         onNavigate={handleNavigate}
         onAuthOpen={setAuthMode}
+        isAuthed={isAuthed}
       />
       <main className="page">
         <div key={page} className={`page__content page__content--${direction}`}>
@@ -50,6 +52,11 @@ function App() {
           mode={authMode}
           onClose={() => setAuthMode(null)}
           onSwitch={setAuthMode}
+          onAuthSuccess={() => {
+            setIsAuthed(true)
+            setAuthMode(null)
+            handleNavigate('home')
+          }}
         />
       )}
     </div>

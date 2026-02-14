@@ -22,3 +22,9 @@ class UserPublic(UserBase):
 class UserInDB(UserBase):
     hashed_password: str
     created_at: datetime
+
+
+class LoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserPublic

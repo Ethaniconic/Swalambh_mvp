@@ -1,7 +1,7 @@
 import logo from '../assets/favicon.jpg'
 import './Navbar.css'
 
-function Navbar({ currentPage, onNavigate, onAuthOpen }) {
+function Navbar({ currentPage, onNavigate, onAuthOpen, isAuthed }) {
   const handleAuth = (mode) => {
     if (onAuthOpen) {
       onAuthOpen(mode)
@@ -59,12 +59,20 @@ function Navbar({ currentPage, onNavigate, onAuthOpen }) {
       </nav>
 
       <div className="nav__actions">
-        <button className="nav__ghost" type="button" onClick={() => handleAuth('login')}>
-          Sign in
-        </button>
-        <button className="nav__cta" type="button" onClick={() => handleAuth('signup')}>
-          Start Triage
-        </button>
+        {isAuthed ? (
+          <button className="nav__profile" type="button" aria-label="Open profile">
+            <img className="nav__avatar" src={logo} alt="Profile" />
+          </button>
+        ) : (
+          <>
+            <button className="nav__ghost" type="button" onClick={() => handleAuth('login')}>
+              Sign in
+            </button>
+            <button className="nav__cta" type="button" onClick={() => handleAuth('signup')}>
+              Start Triage
+            </button>
+          </>
+        )}
       </div>
     </header>
   )
