@@ -3,6 +3,10 @@ import './Home.css'
 function Home() {
   return (
     <section className="hero" id="features">
+      <div className="hero__float" aria-hidden="true">
+        <span className="hero__orb" />
+        <span className="hero__orb hero__orb--sm" />
+      </div>
       <div className="hero__content">
         <p className="hero__eyebrow">Bright, safe, explainable triage</p>
         <h1>DermSight brings images and symptoms together for early guidance.</h1>
