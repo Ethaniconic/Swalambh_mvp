@@ -1,6 +1,13 @@
+import { useEffect, useState } from 'react'
 import './AuthModal.css'
 
 function AuthModal({ mode = 'login', onClose, onSwitch }) {
+  const [fullName, setFullName] = useState('')
+  const [role, setRole] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [status, setStatus] = useState({ type: 'idle', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const config = {
     login: {
       eyebrow: 'Secure access',
@@ -26,6 +33,85 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
   }
 
   const content = config[mode] || config.login
+  const passwordChecks = [
+    { label: 'At least 8 characters', test: /.{8,}/ },
+    { label: 'One uppercase letter', test: /[A-Z]/ },
+    { label: 'One number', test: /\d/ },
+    { label: 'One special character', test: /[^A-Za-z0-9]/ },
+  ]
+
+  useEffect(() => {
+    setStatus({ type: 'idle', message: '' })
+    setIsSubmitting(false)
+    setFullName('')
+    setRole('')
+    setEmail('')
+    setPassword('')
+  }, [mode])
+
+  const apiBase = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    setStatus({ type: 'idle', message: '' })
+
+    try {
+      if (mode === 'signup') {
+        const response = await fetch(`${apiBase}/auth/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            full_name: fullName || undefined,
+            role: role || undefined,
+            password,
+          }),
+        })
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => ({}))
+          throw new Error(payload.detail || 'Signup failed')
+        }
+
+        setStatus({ type: 'success', message: 'Account created. You can sign in now.' })
+        onSwitch('login')
+        return
+      }
+
+      if (mode === 'login') {
+        const response = await fetch(`${apiBase}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        })
+
+        if (!response.ok) {
+          const payload = await response.json().catch(() => ({}))
+          throw new Error(payload.detail || 'Login failed')
+        }
+
+        setStatus({ type: 'success', message: 'Signed in successfully.' })
+        return
+      }
+
+      const response = await fetch(`${apiBase}/auth/forgot`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}))
+        throw new Error(payload.detail || 'Request failed')
+      }
+
+      setStatus({ type: 'success', message: 'Reset link sent if the email exists.' })
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message || 'Something went wrong.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="auth" role="dialog" aria-modal="true" aria-labelledby="auth-title">
@@ -46,7 +132,13 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
                 <label className="auth__label" htmlFor="name">
                   Full name
                 </label>
-                <input id="name" className="auth__input" placeholder="Alex Morgan" />
+                <input
+                  id="name"
+                  className="auth__input"
+                  placeholder="Alex Morgan"
+                  value={fullName}
+                  onChange={(event) => setFullName(event.target.value)}
+                />
               </>
             )}
             {mode === 'signup' && (
@@ -54,13 +146,18 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
                 <label className="auth__label" htmlFor="role">
                   Role
                 </label>
-                <select id="role" className="auth__input" defaultValue="">
+                <select
+                  id="role"
+                  className="auth__input"
+                  value={role}
+                  onChange={(event) => setRole(event.target.value)}
+                >
                   <option value="" disabled>
                     Select role
                   </option>
-                  <option value="clinician">Clinician</option>
-                  <option value="triage">Triage coordinator</option>
-                  <option value="ops">Operations</option>
+                  <option value="patient">Patient</option>
+                  <option value="caregiver">Caregiver</option>
+                  <option value="guardian">Parent or guardian</option>
                 </select>
               </>
             )}
@@ -72,6 +169,8 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
               className="auth__input"
               type="email"
               placeholder="alex@clinic.com"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             {mode !== 'forgot' && (
               <>
@@ -83,11 +182,39 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
                   className="auth__input"
                   type="password"
                   placeholder="Enter password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
+                {mode === 'signup' && (
+                  <ul className="auth__rules">
+                    {passwordChecks.map((rule) => {
+                      const isMet = rule.test.test(password)
+                      return (
+                        <li
+                          key={rule.label}
+                          className={`auth__rule ${isMet ? 'is-met' : 'is-miss'}`}
+                        >
+                          {rule.label}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
               </>
             )}
 
-            <button className="auth__primary" type="button">
+            {status.message && (
+              <div className={`auth__status auth__status--${status.type}`}>
+                {status.message}
+              </div>
+            )}
+
+            <button
+              className="auth__primary"
+              type="button"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
               {content.primary}
             </button>
 
@@ -107,6 +234,7 @@ function AuthModal({ mode = 'login', onClose, onSwitch }) {
               onClick={() =>
                 onSwitch(mode === 'signup' ? 'login' : mode === 'forgot' ? 'login' : 'signup')
               }
+              disabled={isSubmitting}
             >
               {content.secondary}
             </button>

@@ -3,3 +3,5 @@ uvicorn[standard]
 motor
 passlib[bcrypt]
 pydantic
+python-dotenv
+python-multipart
