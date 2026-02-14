@@ -29,5 +29,8 @@ Thumbs.db
 *.sln
 *.sw?
 
+data/
+.venv/
 __pycache__/
-*.pyc
+.pytest_cache/
+.mypy_cache/    
