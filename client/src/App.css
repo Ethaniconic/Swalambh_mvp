@@ -7,6 +7,50 @@
 .page {
   flex: 1;
   padding: 64px 8vw 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page__content {
+  animation-duration: 0.45s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+.page__content--forward {
+  animation-name: slideInFromRight;
+}
+
+.page__content--back {
+  animation-name: slideInFromLeft;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page__content {
+    animation: none;
+  }
 }
 
 @media (max-width: 720px) {
