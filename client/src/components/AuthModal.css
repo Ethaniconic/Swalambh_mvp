@@ -87,6 +87,42 @@
   background: #f9fcff;
 }
 
+.auth__status {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.auth__status--success {
+  background: #e6fbf4;
+  color: #1b7f5a;
+}
+
+.auth__status--error {
+  background: #ffecea;
+  color: #b4251a;
+}
+
+.auth__rules {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  color: var(--navy-700);
+  font-size: 0.85rem;
+}
+
+.auth__rule.is-met {
+  color: #1b7f5a;
+  text-decoration: none;
+}
+
+.auth__rule.is-miss {
+  color: #b4251a;
+  text-decoration: line-through;
+}
+
 .auth__primary {
   border: none;
   border-radius: 999px;
