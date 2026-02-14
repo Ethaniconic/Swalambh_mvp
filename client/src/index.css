@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #182a35;
@@ -34,13 +34,6 @@ body {
 
 #root {
   min-height: 100vh;
-}
-
-h1,
-h2,
-h3 {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: -0.01em;
 }
 
 a {

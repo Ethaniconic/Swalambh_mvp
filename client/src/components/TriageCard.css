@@ -1,0 +1,125 @@
+.triage {
+  display: grid;
+  gap: 18px;
+}
+
+.triage__header {
+  display: grid;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.triage__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--sky-500);
+  font-size: 0.72rem;
+  margin: 0;
+}
+
+.triage__header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+
+.triage__lead {
+  margin: 0;
+  color: var(--navy-700);
+}
+
+.triage__panel {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 18px 36px rgba(24, 42, 53, 0.08);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.triage__upload {
+  display: grid;
+  gap: 12px;
+}
+
+.triage__drop {
+  border: 1px dashed rgba(24, 42, 53, 0.2);
+  background: var(--sky-100);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+}
+
+.triage__drop-title {
+  margin: 0 0 6px;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.triage__drop-text {
+  margin: 0;
+  color: var(--navy-700);
+  font-size: 0.9rem;
+}
+
+.triage__ghost {
+  border: 1px solid rgba(24, 42, 53, 0.2);
+  background: transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: var(--navy-700);
+  cursor: pointer;
+}
+
+.triage__form {
+  display: grid;
+  gap: 12px;
+}
+
+.triage__label {
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+.triage__textarea {
+  border: 1px solid rgba(24, 42, 53, 0.2);
+  border-radius: 14px;
+  padding: 12px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.triage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.triage__primary {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: var(--navy-900);
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.triage__secondary {
+  border: 1px solid rgba(24, 42, 53, 0.2);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--navy-700);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.triage__disclaimer {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--navy-700);
+}
