@@ -1,8 +1,12 @@
 import os
 
+from dotenv import load_dotenv
+
 from motor.motor_asyncio import AsyncIOMotorClient
 
-MONGO_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
+load_dotenv()
+
+MONGO_URI = os.getenv("MONGODB_URI", )
 MONGO_DB = os.getenv("MONGODB_DB", "dermsight")
 
 mongo_client = AsyncIOMotorClient(MONGO_URI)
