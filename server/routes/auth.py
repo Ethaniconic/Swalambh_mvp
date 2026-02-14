@@ -4,9 +4,9 @@ from bson import ObjectId
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, EmailStr
 
-from ..auth import hash_password, verify_password
+from ..auth import create_access_token, hash_password, verify_password
 from ..db import db
-from ..models import UserCreate, UserPublic
+from ..models import LoginResponse, UserCreate, UserPublic
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -48,13 +48,14 @@ async def signup(payload: UserCreate):
     return _user_public(doc)
 
 
-@router.post("/login", response_model=UserPublic)
+@router.post("/login", response_model=LoginResponse)
 async def login(payload: LoginRequest):
     user = await db.users.find_one({"email": payload.email})
     if not user or not verify_password(payload.password, user["hashed_password"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    return _user_public(user)
+    access_token = create_access_token({"sub": str(user["_id"])})
+    return LoginResponse(access_token=access_token, user=_user_public(user))
 
 
 @router.post("/forgot", status_code=status.HTTP_202_ACCEPTED)
