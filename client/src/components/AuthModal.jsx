@@ -49,7 +49,7 @@ function AuthModal({ mode = 'login', onClose, onSwitch, onAuthSuccess }) {
     setPassword('')
   }, [mode])
 
-  const apiBase = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+  const apiBase = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000'
 
   const handleSubmit = async () => {
     setIsSubmitting(true)

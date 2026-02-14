@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .db import mongo_client, ping_db
+from db import mongo_client, ping_db
 from .routes.auth import router as auth_router
 from .routes.triage import router as triage_router
 

@@ -11,7 +11,7 @@ function TriageCard() {
 
   const MAX_BYTES = 10 * 1024 * 1024
   const ACCEPTED_TYPES = ['image/jpeg', 'image/png']
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:3000'
   const uploadUrl = `${apiBase}/triage/upload`
 
   const validateFile = (picked) => {
