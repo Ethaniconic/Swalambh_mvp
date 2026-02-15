@@ -4,8 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .db import mongo_client, ping_db
-from .routes.auth import router as auth_router
-from .routes.triage import router as triage_router
+from .routes import auth_router, predict_router, triage_router, explain_router
 
 
 @asynccontextmanager
@@ -28,6 +27,8 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(triage_router)
+app.include_router(predict_router)
+app.include_router(explain_router)
 
 
 @app.get("/health")

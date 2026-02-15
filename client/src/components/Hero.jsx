@@ -9,7 +9,13 @@ function Hero({ onStartTriage, onSampleReport }) {
       </div>
       <div className="hero__content">
         <p className="hero__eyebrow">Bright, safe, explainable triage</p>
-        <h1>DermSight brings images and symptoms together for early guidance.</h1>
+        <h1 className="hero__title">
+          DermSight AI
+        </h1>
+        <p className="hero__subtitle">
+          Powered by EfficientNet-B2 — a high-accuracy deep learning model fine-tuned
+          on the PAD-UFES dermatology dataset for reliable skin lesion triage.
+        </p>
         <p className="hero__lead">
           Multimodal intelligence helps patients communicate skin concerns, while
           clinicians receive early risk signals and transparent explanations.

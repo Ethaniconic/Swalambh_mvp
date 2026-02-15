@@ -17,6 +17,9 @@ function Footer() {
         <p>For informational guidance only. Not a medical diagnosis.</p>
         <span>2026 DermSight</span>
       </div>
+      <p className="footer__tagline">
+        DermSight AI — Powered by EfficientNet-B2 · Fine-tuned on PAD-UFES clinical data
+      </p>
     </footer>
   )
 }

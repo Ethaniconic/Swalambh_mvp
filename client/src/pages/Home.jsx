@@ -5,7 +5,7 @@ import TriageCard from '../components/TriageCard'
 import Faq from '../components/Faq'
 import './Home.css'
 
-function Home() {
+function Home({ isAuthed, onAuthOpen }) {
   const [sampleOpen, setSampleOpen] = useState(false)
 
   const handleStartTriage = () => {
@@ -20,7 +20,7 @@ function Home() {
   return (
     <main className="home">
       <Hero onStartTriage={handleStartTriage} onSampleReport={handleSampleReport} />
-      <TriageCard />
+      <TriageCard isAuthed={isAuthed} onRequireAuth={() => onAuthOpen('login')} />
       <Faq />
       <SampleReportModal open={sampleOpen} onClose={() => setSampleOpen(false)} />
     </main>

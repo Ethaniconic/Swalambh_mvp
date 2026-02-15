@@ -1,0 +1,232 @@
+/* ==============================
+   FEATURES SECTION
+   ============================== */
+.features {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* ---- Header ---- */
+.features__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.features__title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 12px;
+}
+.features__subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---- Stats Banner ---- */
+.features__stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 56px;
+  padding: 28px 20px;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+}
+.features__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+.features__stat-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0369a1;
+}
+.features__stat-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ---- Feature Cards Grid ---- */
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.features__card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px 24px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.features__card:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08);
+  transform: translateY(-2px);
+}
+.features__card--open {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.12);
+}
+
+.features__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.features__card-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.features__card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+.features__card-short {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.features__card-detail {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+.features__card-detail li {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.6;
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+.features__card-detail li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.features__card-toggle {
+  display: block;
+  font-size: 0.78rem;
+  color: #3b82f6;
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: 0.3px;
+}
+
+/* ---- Model Journey Timeline ---- */
+.features__journey {
+  margin-top: 20px;
+}
+.features__journey-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 40px;
+}
+
+.features__timeline {
+  position: relative;
+  padding-left: 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.features__timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #93c5fd, #3b82f6, #94a3b8);
+  border-radius: 2px;
+}
+
+.features__timeline-step {
+  position: relative;
+  margin-bottom: 40px;
+}
+.features__timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.features__timeline-dot {
+  position: absolute;
+  left: -33px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+.features__timeline-dot--past {
+  background: #94a3b8;
+  box-shadow: 0 0 0 2px #94a3b8;
+}
+.features__timeline-dot--current {
+  background: #3b82f6;
+  box-shadow: 0 0 0 2px #3b82f6, 0 0 12px rgba(59, 130, 246, 0.4);
+}
+.features__timeline-dot--future {
+  background: #fff;
+  box-shadow: 0 0 0 2px #cbd5e1;
+  border: 3px dashed #cbd5e1;
+}
+
+.features__timeline-content h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+.features__timeline-content p {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .features__title {
+    font-size: 1.7rem;
+  }
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+  .features__stats {
+    gap: 16px;
+  }
+  .features__stat-value {
+    font-size: 1.3rem;
+  }
+  .features__timeline {
+    padding-left: 32px;
+  }
+}
