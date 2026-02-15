@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import About from './components/About'
+import Features from './components/Features'
+import TriageCard from './components/TriageCard'
+import Faq from './components/Faq'
 import Footer from './components/Footer'
 import AuthModal from './components/AuthModal'
 import Home from './pages/Home'
-import Features from './pages/Features'
 import Workflow from './pages/Workflow'
 import Safety from './pages/Safety'
-import Telehealth from './pages/Telehealth'
 import './App.css'
 
 function App() {
@@ -14,7 +18,7 @@ function App() {
   const [direction, setDirection] = useState('forward')
   const [authMode, setAuthMode] = useState(null)
   const [isAuthed, setIsAuthed] = useState(false)
-  const pageOrder = ['home', 'features', 'workflow', 'safety', 'telehealth']
+  const pageOrder = ['home', 'features', 'workflow', 'safety']
 
   const handleNavigate = (nextPage) => {
     if (nextPage === page) {
@@ -30,7 +34,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <Router>
       <Navbar
         currentPage={page}
         onNavigate={handleNavigate}
@@ -40,10 +44,9 @@ function App() {
       <main className="page">
         <div key={page} className={`page__content page__content--${direction}`}>
           {page === 'features' && <Features />}
-          {page === 'workflow' && <Workflow />}
+          {page === 'workflow' && <Workflow onNavigate={handleNavigate} />}
           {page === 'safety' && <Safety />}
-          {page === 'telehealth' && <Telehealth />}
-          {page === 'home' && <Home />}
+          {page === 'home' && <Home isAuthed={isAuthed} onAuthOpen={setAuthMode} />}
         </div>
       </main>
       <Footer />
@@ -59,7 +62,7 @@ function App() {
           }}
         />
       )}
-    </div>
+    </Router>
   )
 }
 

@@ -31,33 +31,34 @@
 
 .safety__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
-}
-
-.safety__visual {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 18px 34px rgba(24, 42, 53, 0.08);
-  display: grid;
-  place-items: center;
-}
-
-.safety__visual svg {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
 }
 
 .safety__card {
   background: var(--white);
   border-radius: 18px;
-  padding: 18px;
+  padding: 22px 20px;
   box-shadow: 0 16px 30px rgba(24, 42, 53, 0.08);
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
+
+.safety__card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+}
+
+.safety__card-icon--escalate  { background: #EB5757; }
+.safety__card-icon--tta       { background: #42E1BF; }
+.safety__card-icon--symptom   { background: #F2994A; }
+.safety__card-icon--auth      { background: #2FC1E2; }
+.safety__card-icon--explain   { background: #6C63FF; }
+.safety__card-icon--disclaimer { background: #27AE60; }
 
 .safety__card h3 {
   margin: 0;
@@ -67,4 +68,5 @@
 .safety__card p {
   margin: 0;
   color: var(--navy-700);
+  line-height: 1.55;
 }

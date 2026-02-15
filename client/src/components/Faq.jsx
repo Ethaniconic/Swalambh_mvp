@@ -19,6 +19,28 @@ const defaultItems = [
   },
 ]
 
+// Update or add an FAQ entry about the model
+const faqs = [
+  // ...existing faqs...
+  {
+    question: "What AI model does DermSight use?",
+    answer:
+      "DermSight uses EfficientNet-B2, a state-of-the-art convolutional neural network. " +
+      "We initially trained with EfficientNet-B0 but upgraded to B2 for significantly " +
+      "better accuracy. The model is fine-tuned on the PAD-UFES clinical dermatology " +
+      "dataset and classifies lesions into three risk tiers: Low, Medium, and High."
+  },
+  {
+    question: "Why did you switch from B0 to B2?",
+    answer:
+      "EfficientNet-B0 gave us a solid starting point, but it struggled with edge cases — " +
+      "particularly distinguishing medium-risk from high-risk lesions. EfficientNet-B2 has " +
+      "a deeper architecture (9.1M parameters vs 5.3M) which captures finer details in " +
+      "skin images, resulting in a significant improvement in accuracy across all categories."
+  },
+  // ...existing faqs...
+]
+
 function Faq({ title = 'Questions, answered', lead, items = defaultItems }) {
   const [openIndex, setOpenIndex] = useState(0)
 

@@ -49,13 +49,6 @@ function Navbar({ currentPage, onNavigate, onAuthOpen, isAuthed }) {
         >
           Safety
         </button>
-        <button
-          type="button"
-          className={`nav__link ${currentPage === 'telehealth' ? 'is-active' : ''}`}
-          onClick={() => onNavigate('telehealth')}
-        >
-          Telehealth
-        </button>
       </nav>
 
       <div className="nav__actions">

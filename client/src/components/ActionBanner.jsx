@@ -6,6 +6,8 @@ function ActionBanner({
   subtitle = 'Invite patients to upload images or share reports with clinicians.',
   primaryLabel = 'Start Triage',
   secondaryLabel,
+  onPrimaryClick,
+  onSecondaryClick,
 }) {
   return (
     <section className="banner">
@@ -15,11 +17,11 @@ function ActionBanner({
         <p className="banner__lead">{subtitle}</p>
       </div>
       <div className="banner__actions">
-        <button className="banner__primary" type="button">
+        <button className="banner__primary" type="button" onClick={onPrimaryClick}>
           {primaryLabel}
         </button>
         {secondaryLabel && (
-          <button className="banner__secondary" type="button">
+          <button className="banner__secondary" type="button" onClick={onSecondaryClick}>
             {secondaryLabel}
           </button>
         )}
