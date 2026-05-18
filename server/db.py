@@ -11,7 +11,8 @@ else:
 
 MONGO_URI = os.getenv("MONGODB_URI", "").strip()
 if not MONGO_URI:
-    raise RuntimeError("MONGODB_URI is not set. Add it to .env or the environment.")
+    print("CRITICAL: MONGODB_URI is not set in .env or environment.")
+    raise RuntimeError("MONGODB_URI is missing. Please check your .env file.")
 
 MONGO_DB = os.getenv("MONGODB_DB", "dermsight")
 

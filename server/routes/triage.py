@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 from uuid import uuid4
@@ -85,7 +85,7 @@ async def upload_case(
         "content_type": image.content_type or "image/*",
         "size_bytes": size,
         "note": note,
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db.triage_cases.insert_one(doc)
     return TriageUploadResponse(id=str(result.inserted_id), **doc)

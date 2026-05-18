@@ -10,7 +10,7 @@ from pathlib import Path
 # 1. CONFIGURATION
 # ==========================================
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-_DEFAULT_MODEL_PATH = Path(__file__).resolve().parents[1] / "models" / "efficientnet_b2_pad_ufes_best.pth"
+_DEFAULT_MODEL_PATH = Path(__file__).resolve().parents[1] / "data" / "models" / "efficientnet_b2_pad_ufes_best.pth"
 MODEL_PATH = os.getenv("MODEL_PATH", str(_DEFAULT_MODEL_PATH))
 
 LABELS = {

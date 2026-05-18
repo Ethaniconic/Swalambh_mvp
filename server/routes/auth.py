@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from bson import ObjectId
 from fastapi import APIRouter, HTTPException, status
@@ -41,7 +41,7 @@ async def signup(payload: UserCreate):
         "full_name": payload.full_name,
         "role": payload.role,
         "hashed_password": hash_password(payload.password),
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
     }
     result = await db.users.insert_one(doc)
     doc["_id"] = result.inserted_id
@@ -66,7 +66,7 @@ async def forgot_password(payload: ForgotPasswordRequest):
 
     reset_doc = {
         "user_id": ObjectId(user["_id"]),
-        "created_at": datetime.utcnow(),
+        "created_at": datetime.now(timezone.utc),
         "used": False,
     }
     await db.password_resets.insert_one(reset_doc)

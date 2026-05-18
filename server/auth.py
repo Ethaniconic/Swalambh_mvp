@@ -4,9 +4,9 @@ from datetime import datetime, timedelta, timezone
 from jose import jwt
 from passlib.context import CryptContext
 
-SECRET_KEY = os.getenv("SECRET_KEY", "").strip()
-if not SECRET_KEY:
-    raise RuntimeError("SECRET_KEY is not set. Add it to .env or the environment.")
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-this-in-production").strip()
+if SECRET_KEY == "dev-secret-key-change-this-in-production":
+    print("WARNING: SECRET_KEY is not set. Using default insecure key for development.")
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = int(os.getenv("ACCESS_TOKEN_EXPIRE_DAYS", "7"))

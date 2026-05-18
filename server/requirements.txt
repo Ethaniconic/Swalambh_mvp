@@ -1,8 +1,15 @@
 fastapi
 uvicorn[standard]
+gunicorn
 motor
 passlib[bcrypt]
-pydantic
+pydantic[email]
+email-validator
 python-dotenv
 python-multipart
 python-jose
+httpx
+torch --index-url https://download.pytorch.org/whl/cpu
+torchvision --index-url https://download.pytorch.org/whl/cpu
+pillow
+numpy
