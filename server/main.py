@@ -21,13 +21,15 @@ app = FastAPI(title="DermSight API", lifespan=lifespan)
 env_origins = os.getenv("ALLOWED_ORIGINS", "")
 if env_origins == "*" or not env_origins:
     allowed_origins = ["*"]
+    allow_all_origins = True
 else:
     allowed_origins = env_origins.split(",")
+    allow_all_origins = False
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_credentials=True,
+    allow_credentials=not allow_all_origins,  # Credentials NOT allowed with "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )

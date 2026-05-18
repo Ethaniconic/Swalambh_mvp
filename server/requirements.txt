@@ -3,6 +3,7 @@ uvicorn[standard]
 gunicorn
 motor
 passlib[bcrypt]
+bcrypt==4.0.1
 pydantic[email]
 email-validator
 python-dotenv
