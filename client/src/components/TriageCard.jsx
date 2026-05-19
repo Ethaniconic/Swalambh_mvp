@@ -79,8 +79,8 @@ function TriageCard({ isAuthed = false, onRequireAuth }) {
     const results = filtered.length > 0
       ? filtered
       : PAD_SYMPTOMS.filter(
-          s => s.toLowerCase().includes(current) && !already.includes(s.toLowerCase())
-        )
+        s => s.toLowerCase().includes(current) && !already.includes(s.toLowerCase())
+      )
     setSuggestions(results.slice(0, 8))
   }
 
@@ -170,9 +170,9 @@ function TriageCard({ isAuthed = false, onRequireAuth }) {
             {preview
               ? <img src={preview} alt="preview" className="triage__preview" />
               : <>
-                  <p className="triage__drop-title">{isDragging ? 'Release to upload' : 'Drop image here'}</p>
-                  <p className="triage__drop-text">JPG or PNG, max 10 MB</p>
-                </>
+                <p className="triage__drop-title">{isDragging ? 'Release to upload' : 'Drop image here'}</p>
+                <p className="triage__drop-text">JPG or PNG, max 10 MB</p>
+              </>
             }
           </div>
           <input ref={inputRef} type="file" accept={ACCEPTED_TYPES.join(',')}

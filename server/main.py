@@ -17,19 +17,11 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(title="DermSight API", lifespan=lifespan)
 
-# Allow origins from environment variable, otherwise fallback to local dev defaults
-env_origins = os.getenv("ALLOWED_ORIGINS", "")
-if env_origins == "*" or not env_origins:
-    allowed_origins = ["*"]
-    allow_all_origins = True
-else:
-    allowed_origins = env_origins.split(",")
-    allow_all_origins = False
-
+# Allow all origins in a way that also supports credentials
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=not allow_all_origins,  # Credentials NOT allowed with "*"
+    allow_origin_regex="https?://.*",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
